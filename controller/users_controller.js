@@ -33,11 +33,16 @@ exports.create = async(req, res) => {
 
   let allOwnersEmail = [];
   let allOwners = await Owner.find({type: req.body.type});
+  console.log("ALL OWNERS BELOW");
+  console.log(allOwners);
+
   allOwners.forEach(owner => {
     allOwnersEmail.push(owner.email);
   });
-
+  console.log("All Onwers Email Below");
+  console.log(allOwnersEmail);
   if(allOwnersEmail.length > 0) {
+    console.log("OWNERS EMAIL GREATER")
     nodemailer.sendNewDocumentEmail(req.body.type, allOwnersEmail);
   }
 

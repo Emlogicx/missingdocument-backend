@@ -3,15 +3,11 @@ const Owners = require("../model/owner_model");
 
 // this method is to create a new Owner
 exports.create = (req, res) => {
-
+  console.log(req.body);
     const owners = new Owners({
       email: req.body.email,
       name: req.body.name,
-      number: req.body.number,
       location: req.body.location,
-      dateTime: req.body.dateTime,
-      createdTime: req.body.createdTime,
-      updatedTime: req.body.updatedTime,
       // isActive: req.body.isActive,
       type: req.body.type,
     });
