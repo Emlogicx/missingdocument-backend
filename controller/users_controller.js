@@ -1,5 +1,7 @@
 // ALl business logic goes here
 const Users = require('../model/users_model');
+const Owner = require('../model/owner_model');
+const nodemailer = require("../config/nodemailer.config");
 
 var cloudinary = require('cloudinary');
 cloudinary.config({
@@ -11,8 +13,9 @@ let cloudinaryv2 = cloudinary.v2
 
 
 // this method is to create the User
-exports.create = (req, res) => {
-
+exports.create = async(req, res) => {
+  console.log("Incoming request")
+  console.log(req.body)
   const user = new Users({
     f_email: req.body.f_email,
     f_name: req.body.f_name,
@@ -28,6 +31,15 @@ exports.create = (req, res) => {
     type: req.body.type,
   });
 
+  let allOwnersEmail = [];
+  let allOwners = await Owner.find({type: req.body.type});
+  allOwners.forEach(owner => {
+    allOwnersEmail.push(owner.email);
+  });
+
+  if(allOwnersEmail.length > 0) {
+    nodemailer.sendNewDocumentEmail(req.body.type, allOwnersEmail);
+  }
 
   user.save().then((data) => {
     res.send(data);
