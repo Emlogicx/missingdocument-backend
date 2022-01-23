@@ -22,7 +22,7 @@ module.exports.sendNewDocumentEmail = (type, maillist) => {
       html: `
           <h1>Hello</h1>
           <p>Please head over to our website by clicking the link below to check if the documment belongs to you thanks.</p>
-          <a href=http://localhost:8070"> Click here</a>
+          <a href="https://www.missingdocument.cm/">https://www.missingdocument.cm/</a>
           </div>`,
     }).catch(err => console.log(err));
 };
