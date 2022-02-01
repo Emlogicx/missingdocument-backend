@@ -84,7 +84,7 @@ exports.findAllUsers = async (req, res) => {
 
     } catch (e) {
       console.error(e);
-    }
+    }   
   }
 }
 
