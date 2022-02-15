@@ -23,6 +23,15 @@ exports.uploadFile = (req, res) => {
         // you can access it using file.path
         fileUploader(file.path).then(val => {
             console.log('Runningg')
+
+            // use file for AI tests. 
+
+            // if detectDoc.(file)
+            res.json({
+                sucess: false, 
+                message: "Invalid file"
+            })
+            
             res.json({
                 success: true,
                 name: req.body.name,
