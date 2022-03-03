@@ -42,34 +42,44 @@ let ss = bitmap.toString('base64');
 const data = {
     image: ss,
 };
-
-axios.post('http://127.0.0.1:5000/predict', data)
-    .then((response) => {
-  let sorted = response.data.predictions.sort((a,b)=>{
-            return a.confidence - b.confidence;
-        });
-        if(sorted[0].label == "Others"){
-            console.log("correct document");
-                   fileUploader(file.path).then(val => {
-            console.log('Runningg')
-            res.json({
-                success: true,
-                name: req.body.name,
-                message:"Correct Document",
-                path: val.secure_url
-            });
-        }).catch(er => {
-            res.json({ success: false })
-        });
-        }
-        else{
-            res.json({ success: false , message:"wrong document"})
-        }
-
-    }).catch((err) => {
-        console.error(err);
-        res.json({ success: false })
+fileUploader(file.path).then(val => {
+    console.log('Runningg')
+    res.json({
+        success: true,
+        name: req.body.name,
+        message:"Correct Document",
+        path: val.secure_url
     });
+}).catch(er => {
+    res.json({ success: false })
+});
+// axios.post('http://127.0.0.1:5000/predict', data)
+//     .then((response) => {
+//   let sorted = response.data.predictions.sort((a,b)=>{
+//             return a.confidence - b.confidence;
+//         });
+//         if(sorted[0].label == "Others"){
+//             console.log("correct document");
+//                    fileUploader(file.path).then(val => {
+//             console.log('Runningg')
+//             res.json({
+//                 success: true,
+//                 name: req.body.name,
+//                 message:"Correct Document",
+//                 path: val.secure_url
+//             });
+//         }).catch(er => {
+//             res.json({ success: false })
+//         });
+//         }
+//         else{
+//             res.json({ success: false , message:"wrong document"})
+//         }
+
+//     }).catch((err) => {
+//         console.error(err);
+//         res.json({ success: false })
+//     });
      
 
 
