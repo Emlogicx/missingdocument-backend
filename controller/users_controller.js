@@ -43,6 +43,7 @@ exports.create = async(req, res) => {
   console.log(allOwnersEmail);
   if(allOwnersEmail.length > 0) {
     console.log("OWNERS EMAIL GREATER")
+    console.log("ABOUT TO CALL NODE MAILER FOR EMAIL SENDING")
     nodemailer.sendNewDocumentEmail(req.body.type, allOwnersEmail);
   }
 
