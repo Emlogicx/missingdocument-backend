@@ -38,7 +38,7 @@ module.exports.sendClaimEmail = (claimData) => {
   transport
     .sendMail({
       from: user,
-      to: "awadonalcien12@gmail.com",
+      to: "missingmissingdocument@gmail.com",
       subject: `New claim request has been submited`,
       html: `
         <h1>Hello Admin</h1>
