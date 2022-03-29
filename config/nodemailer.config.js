@@ -31,3 +31,23 @@ module.exports.sendNewDocumentEmail = (type, maillist) => {
         console.log(err);
       });
 };
+
+
+module.exports.sendClaimEmail = (claimData) => {
+  console.log("Check");
+  transport
+    .sendMail({
+      from: user,
+      to: "awadonalcien12@gmail.com",
+      subject: `New claim request has been submited`,
+      html: `
+        <h1>Hello Admin</h1>
+        <p>A new claim request has been submited on your website by <br/> Name: ${claimData.claimerName} <br/>           Phone: ${claimData.claimerPhone} <br/> and this document was found by <br/> Founder Name: ${claimData.founderName} <br/> Founder Phone: ${claimData.founderPhone} </p>
+        <a href="https://www.missingdocument.cm/">https://www.missingdocument.cm/</a>
+        </div>`,
+    })
+    .catch((err) => {
+      console.log("There was an error sending email");
+      console.log(err);
+    });
+};
